@@ -11,6 +11,7 @@ ec2.volumes.each do |volume|
   result = volume.tags.find do |tag|
     tag.key == "Name"
   end
+  puts result.value
   tag_name = result.value
 
   snapshot = ec2.create_snapshot ({
