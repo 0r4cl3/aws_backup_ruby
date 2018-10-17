@@ -11,7 +11,6 @@ ec2.volumes.each do |volume|
   result = volume.tags.find do |tag|
     tag.key == "Name"
   end
-  puts result.value
   tag_name = result.value
 
   snapshot = ec2.create_snapshot ({
@@ -20,3 +19,4 @@ ec2.volumes.each do |volume|
     tag_specifications: [{resource_type: 'snapshot', tags: [{key: "Name", value: tag_name}, {key: "delete_backup_on", value: delete_on.to_s}]}]
   })
 end
+
